@@ -1,0 +1,29 @@
+.body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(217deg, rgba(111, 0, 255, 0.438), rgba(255, 255, 255, 0) 70.71%),
+              linear-gradient(127deg, rgba(234, 0, 255, 0.212), rgba(255, 255, 255, 0) 70.71%),
+              linear-gradient(355deg, rgb(194, 75, 91), rgba(255, 255, 255, 0) 70.71%);
+}
+
+form {
+  /* background-color: rgba(246, 225, 255, 0.788); */
+  background: linear-gradient(217deg, rgba(190, 131, 243, 0.438), rgba(255, 255, 255, 0) 70.71%),
+              linear-gradient(127deg, rgba(190, 132, 194, 0.479), rgba(255, 255, 255, 0) 70.71%),
+              linear-gradient(355deg, rgba(255, 255, 255, 0.568), rgba(255, 255, 255, 0) 70.71%);
+  border-radius: 20px;
+  transition: 1s ease-out;
+  transform: scale(0.7);
+  border: 1px solid rgba(115, 86, 141, 0.596);
+}
+form:hover,
+form:focus-within {
+  background-color: rgba(252, 244, 255, 0.212);
+  border-radius: 0;
+  border-color: rgba(115, 86, 141, 0.192);
+  transform: scale(1);
+  box-shadow: 0 0 100px rgba(40, 0, 44, 0.349) ;
+}
