@@ -10,7 +10,6 @@ import { DefaultRoutingModule } from './default-routing.module';
 @NgModule({
   declarations: [
     DefaultLayoutComponent,
-    DefaultRoutingModule,
     HeaderComponent,
   ],
   imports: [
