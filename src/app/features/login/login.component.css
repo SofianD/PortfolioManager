@@ -16,14 +16,15 @@ form {
               linear-gradient(355deg, rgba(255, 255, 255, 0.568), rgba(255, 255, 255, 0) 70.71%);
   border-radius: 20px;
   transition: 1s ease-out;
-  transform: scale(0.7);
+  transform: scale(0.6, 0.7);
   border: 1px solid rgba(115, 86, 141, 0.596);
 }
-form:hover,
+
+.body:hover form,
 form:focus-within {
-  background-color: rgba(252, 244, 255, 0.212);
-  border-radius: 0;
+  background-color: rgba(252, 244, 255, 0.63);
+  border-radius: 5px;
   border-color: rgba(115, 86, 141, 0.192);
   transform: scale(1);
-  box-shadow: 0 0 100px rgba(40, 0, 44, 0.349) ;
+  box-shadow: 0 0 100px rgba(40, 0, 44, 0.39) ;
 }
