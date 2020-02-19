@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'logged',
-    loadChildren: './core/default-layout/default.module#DefaultModule',
+    loadChildren: () => import('./core/default-layout/default.module').then(m => m.DefaultModule),
     // AJOUTER UN AUTHGARD
   }
 ];
