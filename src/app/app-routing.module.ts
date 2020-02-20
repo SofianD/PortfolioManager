@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   {
     path: 'logged',
     loadChildren: () => import('./core/default-layout/default.module').then(m => m.DefaultModule),
-    // AJOUTER UN AUTHGARD
+    canLoad: [AuthGuard]
   }
 ];
 
