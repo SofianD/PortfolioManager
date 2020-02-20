@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './features/login/login.component';
 import { RegisterComponent } from './features/register/register.component';
 import { AngularMaterialModule } from './shared/modules/angular-material/angular-material.module';
+import { AuthInterceptor } from './shared/helper/interceptors/auth.interceptor';
 
 
 @NgModule({
@@ -30,7 +31,9 @@ import { AngularMaterialModule } from './shared/modules/angular-material/angular
     FormsModule,
     AngularMaterialModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
