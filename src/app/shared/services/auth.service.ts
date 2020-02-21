@@ -44,6 +44,7 @@ export class AuthService {
     console.log('set timer: ', duration * 1000);
     this.tokenTimer = setTimeout(() => {
       this.logout();
+      this.router.navigate(['']);
     }, duration * 1000);
   }
 
