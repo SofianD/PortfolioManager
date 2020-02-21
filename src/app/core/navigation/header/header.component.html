@@ -14,18 +14,20 @@
 <div>
   <div id="mySidenav" class="sidenav">
     <div class="row" style="margin-bottom: 60px;">
-      <div class="col-9 mx-auto">
+      <div class="col-9 mx-auto" style="max-width: 200px;">
         <img class="w-100 logo" src="./../../../../assets/logo.PNG" alt="Logo">
       </div>
     </div>
     <div class="row link-container">
       <div class="col-12 mx-auto text-center">
+        <a [routerLink]="['dashboard']">Dashboard</a>
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Clients</a>
         <a href="#">Contact</a>
       </div>
     </div>
-
   </div>
+
+  <div [ngClass]="{'dark-opac': isOpen}"></div>
 </div>
