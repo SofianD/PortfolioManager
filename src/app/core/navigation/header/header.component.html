@@ -1,1 +1,31 @@
-<p>header works!</p>
+<div class="container-fluid">
+  <div class="row d-flex bg-dark" style="height: 60px; color: white;">
+    <div [ngClass]="{'d-none' : isOpen}" class="my-auto ml-4">
+      <span style="font-size:30px;cursor:pointer" (click)="showNav()">&#9776;</span>
+    </div>
+    <div [ngClass]="{'d-none' : !isOpen}" class="my-auto ml-4">
+      <span style="font-size:30px;cursor:pointer" (click)="showNav()"><i class="fas fa-long-arrow-alt-left"></i></span>
+    </div>
+    <div class="my-auto ml-auto" style="margin-right: 20px;">
+      <img src="./../../../../assets/logo-trans.png" alt="MyPortfolio" style="height: 45px; right: 30px;">
+    </div>
+  </div>
+</div>
+<div>
+  <div id="mySidenav" class="sidenav">
+    <div class="row" style="margin-bottom: 60px;">
+      <div class="col-9 mx-auto">
+        <img class="w-100 logo" src="./../../../../assets/logo.PNG" alt="Logo">
+      </div>
+    </div>
+    <div class="row link-container">
+      <div class="col-12 mx-auto text-center">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+  </div>
+</div>
