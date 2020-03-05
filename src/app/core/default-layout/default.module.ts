@@ -5,7 +5,7 @@ import { HeaderComponent } from '../navigation/header/header.component';
 import { DefaultLayoutComponent } from './default-layout.component';
 import { DefaultRoutingModule } from './default-routing.module';
 import { DashboardComponent } from '../page/dashboard/dashboard.component';
-import { ProjectComponent } from '../page/project/project/project.component';
+import { ProjectComponent } from '../page/project/project.component';
 
 @NgModule({
   declarations: [
