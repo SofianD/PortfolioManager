@@ -14,7 +14,6 @@ import { RegisterComponent } from './features/register/register.component';
 import { AngularMaterialModule } from './shared/modules/angular-material/angular-material.module';
 import { AuthInterceptor } from './shared/helper/interceptors/auth.interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent,
