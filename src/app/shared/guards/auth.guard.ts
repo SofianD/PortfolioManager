@@ -23,9 +23,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
 
-    if (!token || !expirationDate || !userId) {
+    if (!token || !expirationDate) {
       return this.router.navigate(['/auth']);
     }
     return true;
@@ -35,9 +34,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
 
-    if (!token || !expirationDate || !userId) {
+    if (!token || !expirationDate) {
       return this.router.navigate(['/auth']);
     }
     return true;
@@ -47,9 +45,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
-    const userId = localStorage.getItem('userId');
 
-    if (!token || !expirationDate || !userId) {
+    if (!token || !expirationDate) {
       return this.router.navigate(['/auth']);
     }
     return true;
