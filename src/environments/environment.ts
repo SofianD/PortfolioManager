@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3030/api',
-  projectImgUrl: 'http://localhost:3030/images/project',
-  skillImgUrl: 'http://localhost:3030/images/project'
+  apiUrl: 'http://localhost:3000/',
 };
 
 /*
