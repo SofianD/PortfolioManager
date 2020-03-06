@@ -20,14 +20,14 @@
     </div>
     <div class="row link-container">
       <div class="col-12 mx-auto text-center">
-        <a [routerLink]="['dashboard']">Dashboard</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a [routerLink]="['dashboard']" (click)="closeNav()">Dashboard</a>
+        <a [routerLink]="['project']" (click)="closeNav()">Projects</a>
+        <a href="#" (click)="closeNav()">Services</a>
+        <a href="#" (click)="closeNav()">Clients</a>
+        <a href="#" (click)="closeNav()">Contact</a>
       </div>
     </div>
   </div>
 
-  <div [ngClass]="{'dark-opac': isOpen}"></div>
+  <div [ngClass]="{'dark-opac': isOpen}" (click)="closeNav()"></div>
 </div>

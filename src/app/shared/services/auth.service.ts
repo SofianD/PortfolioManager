@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import { Router } from '@angular/router';
 
-const BACKEND_URL = env.apiUrl + '/user/';
+const BACKEND_URL = env.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +19,16 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      const userData = {email, password};
-      console.log(userData);
+      const data = {email, password};
       this.http
-        .post<{token: string, expiresIn: number, userId: string}>(BACKEND_URL + 'login', userData)
+        .post<{message: string, token: string, expiresIn: number}>(BACKEND_URL + 'login', {
+          data
+        })
         .subscribe((res) => {
-          console.log(res);
-          this.setAuthTimer(res.expiresIn);
-          const now = new Date();
-          const expirationDate = new Date( now.getTime() + res.expiresIn * 1000);
-          this.saveAuthData(res.token, expirationDate, res.userId);
+          // this.setAuthTimer(res.expiresIn);
+          // const now = new Date();
+          // const expirationDate = new Date( now.getTime() + res.expiresIn * 1000);
+          // this.saveAuthData(res.token, expirationDate);
           this.router.navigate(['logged']);
         });
     } catch (error) {
@@ -41,22 +41,19 @@ export class AuthService {
   }
 
   private setAuthTimer(duration: number) {
-    console.log('set timer: ', duration * 1000);
     this.tokenTimer = setTimeout(() => {
       this.logout();
       this.router.navigate(['']);
     }, duration * 1000);
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string) {
+  private saveAuthData(token: string, expirationDate: Date) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
-    localStorage.setItem('userId', userId);
   }
 
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
-    localStorage.removeItem('userId');
   }
 }
