@@ -8,21 +8,34 @@ import { ProjectService } from 'src/app/shared/services/project/project.service'
 })
 export class ProjectComponent implements OnInit {
 
+  projects: [] = [];
+
   constructor(
     private projectService: ProjectService
   ) { }
 
   ngOnInit() {
+    this.initialize();
   }
 
   initialize() {
-
+    try {
+      this.getAllProjects();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   /////////////////////////////////////////////////////////////////////
   ////  BELOW ARE SERVICE FUNCTIONS
   async getAllProjects() {
-    const response = await this.projectService.getAllProjects();
+    try {
+    (await this.projectService.getAllProjects()).subscribe(res => {
+      this.projects = res.projects;
+    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getOneProject(id: string) {
