@@ -3,13 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { DefaultLayoutComponent } from './default-layout.component';
 import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { DashboardComponent } from '../page/dashboard/dashboard.component';
+import { ProjectComponent } from '../page/project/project.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
-    canActivateChild: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     children : [
       {
         path: '',
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent
+      },
+      {
+        path: 'project',
+        component: ProjectComponent
       }
     ]
   }
