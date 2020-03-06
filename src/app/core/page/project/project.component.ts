@@ -15,6 +15,10 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
   }
 
+  initialize() {
+
+  }
+
   /////////////////////////////////////////////////////////////////////
   ////  BELOW ARE SERVICE FUNCTIONS
   async getAllProjects() {
