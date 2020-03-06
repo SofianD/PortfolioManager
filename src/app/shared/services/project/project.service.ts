@@ -13,7 +13,11 @@ export class ProjectService {
   ) { }
 
   async getAllProjects(): Promise<any> {
-    return this.http.get(BACKEND_URL + 'project');
+    try {
+      return this.http.get(BACKEND_URL + 'project/');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getOneProject(id: string): Promise<any> {
