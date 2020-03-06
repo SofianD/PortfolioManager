@@ -20,7 +20,11 @@ export class HeaderComponent implements OnInit {
 
   openNav() {
     this.isOpen = true;
-    setTimeout(() => { document.getElementById('mySidenav').style.width = '230px'; }, 250);
+    setTimeout(() => {
+      document.getElementById('mySidenav').style.width = '230px';
+    },
+    250
+    );
   }
 
   closeNav() {
