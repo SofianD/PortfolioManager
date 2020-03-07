@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/shared/services/project/project.service';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-project',
@@ -8,12 +9,18 @@ import { ProjectService } from 'src/app/shared/services/project/project.service'
 })
 export class ProjectComponent implements OnInit {
 
+  // define the view
   mode = 'overview';
+
+  // declare form of type FormGroup
+  form: FormGroup;
+  submitted = false;
 
   projects: [] = [];
 
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -28,9 +35,54 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+
+  /////////////////////////////////////////////////////////////////////
+  ////  FORM FUNCTIONS
+  newForm() {
+    this.form = this.fb.group({
+      name: new FormControl(
+        null,
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(5)
+          ]
+        }
+      ),
+      created_date: new FormControl(
+        null,
+        {
+          validators: [
+            Validators.required
+          ]
+        }
+      ),
+      description: new FormControl(
+        null,
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(15)
+          ]
+        }
+      ),
+      images: this.fb.array([]),
+      skills: this.fb.array([]),
+      framework: this.fb.array([])
+    });
+  }
+
+  createItem(data): FormGroup {   // <- Use this function to push
+    return this.fb.group(data);   //    an item into a form array
+  }
+
+
+  /////////////////////////////////////////////////////////////////////
+  ////  VIEW FUNCTIONS
   changePageMode(str: string) {
     this.mode = str;
   }
+
 
   /////////////////////////////////////////////////////////////////////
   ////  SERVICE FUNCTIONS
