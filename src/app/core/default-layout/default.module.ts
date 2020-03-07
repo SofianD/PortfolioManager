@@ -7,6 +7,7 @@ import { DefaultRoutingModule } from './default-routing.module';
 import { DashboardComponent } from '../page/dashboard/dashboard.component';
 import { ProjectComponent } from '../page/project/project.component';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/angular-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/a
   imports: [
     CommonModule,
     DefaultRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class DefaultModule { }
