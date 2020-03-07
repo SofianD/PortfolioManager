@@ -26,7 +26,7 @@ export class ProjectService {
 
   async create(project: any): Promise<any> {
     return this.http.post(
-      BACKEND_URL + 'project',
+      BACKEND_URL + 'project/',
       {
         project
       }
