@@ -14,3 +14,12 @@
   width: 100%;
   min-height: 50%;
 }
+
+.one-message {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.863);
+}

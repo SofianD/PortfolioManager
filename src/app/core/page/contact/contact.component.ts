@@ -12,6 +12,8 @@ export class ContactComponent implements OnInit {
 
   selectedMessage: object = {};
 
+  showDetails = false;
+
   constructor(
     private contactService: ContactService
   ) {}
@@ -45,7 +47,7 @@ export class ContactComponent implements OnInit {
   async delete(id: string) {
     try {
       (await this.contactService.delete(id)).subscribe(res => {
-        this.selectedMessage = res.result;
+        console.log(res);
       });
     } catch (error) {
       console.log(error);
