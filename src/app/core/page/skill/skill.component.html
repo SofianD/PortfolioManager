@@ -1,17 +1,17 @@
 <div id="component-bg"></div>
 
-<div *ngIf="mode === 'overview'" id="project-menu" class="container" style="padding: 0 50px;">
+<div id="project-menu" class="container" style="padding: 0 50px;">
   <div class="row">
     <div class="col-12 col-md-10 col-lg-7 col-xl-6 m-auto">
       <div class="row">
         <div class="col m-auto text-center py-2">
-          <button mat-raised-button color="primary">Add skill</button>
+          <button mat-raised-button color="primary" (click)="changePageMode('newSkill')">Add skill</button>
         </div>
         <div class="col m-auto text-center py-2">
-          <button mat-raised-button color="primary">Add framework</button>
+          <button mat-raised-button color="primary" (click)="changePageMode('newFramework')">Add framework</button>
         </div>
         <div class="col m-auto text-center py-2">
-          <button mat-raised-button color="primary">Add platform</button>
+          <button mat-raised-button color="primary" (click)="changePageMode('newPlatform')">Add platform</button>
         </div>
       </div>
     </div>
@@ -24,5 +24,74 @@
     <mat-list role="list">
       <mat-list-item *ngFor="let skill of skills" class="skill" role="listitem">{{ skill.name }}</mat-list-item>
     </mat-list>
+  </div>
+  <!-- create skill -->
+  <div *ngIf="mode === 'newSkill'" class="row m-auto w-100 p-4">
+    <div class="col-12 col-md-9 col-xl-7 m-auto" style="min-height: 60px; background-color: rgba(255, 255, 255, 0.863); border-radius: 3px; transition: 0.5s;">
+      <form [formGroup]="skillForm" enctype="multipart/form-data" (ngSubmit)="submitSkillForm()" class="w-100">
+        <div class="form-row">
+          <div class="col-12 text-center">
+            <p>ADD SKILL</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Skill name</mat-label>
+            <input matInput formControlName="name" placeholder="JavaScript, PHP, Python, ...">
+          </mat-form-field>
+        </div>
+        <!-- BUTTONS -->
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-success m-1">ADD SKILL</button>
+          <button class="btn btn-secondary m-1" type="reset" (click)="resetSkillForm()" (click)="changePageMode('overview')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- add framework -->
+  <div *ngIf="mode === 'newFramework'" class="row m-auto w-100 p-4">
+    <div class="col-12 col-md-9 col-xl-7 m-auto" style="min-height: 60px; background-color: rgba(255, 255, 255, 0.863); border-radius: 3px; transition: 0.5s;">
+      <form [formGroup]="frameworkForm" enctype="multipart/form-data" (ngSubmit)="submitFmForm()" class="w-100">
+        <div class="form-row">
+          <div class="col-12 text-center">
+            <p>ADD FRAMEWORK</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Framework name</mat-label>
+            <input matInput formControlName="name" placeholder="Angular, Bootstrap, ...">
+          </mat-form-field>
+        </div>
+        <!-- BUTTONS -->
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-success m-1">ADD FRAMEWORK</button>
+          <button class="btn btn-secondary m-1" type="reset" (click)="resetFmForm()" (click)="changePageMode('overview')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- add platform -->
+  <div *ngIf="mode === 'newPlatform'" class="row m-auto w-100 p-4">
+    <div class="col-12 col-md-9 col-xl-7 m-auto" style="min-height: 60px; background-color: rgba(255, 255, 255, 0.863); border-radius: 3px; transition: 0.5s;">
+      <form [formGroup]="platformForm" enctype="multipart/form-data" (ngSubmit)="submitPlatformForm()" class="w-100">
+        <div class="form-row">
+          <div class="col-12 text-center">
+            <p>ADD PLATFORM</p>
+          </div>
+        </div>
+        <div class="form-row">
+          <mat-form-field class="col-12" appearance="outline">
+            <mat-label>Platform name</mat-label>
+            <input matInput formControlName="name" placeholder="PC, Android, MAC, ...">
+          </mat-form-field>
+        </div>
+        <!-- BUTTONS -->
+        <div class="col-12 text-center">
+          <button type="submit" class="btn btn-success m-1">ADD PLATFORM</button>
+          <button class="btn btn-secondary m-1" type="reset" (click)="resetPlatformForm()" (click)="changePageMode('overview')">Cancel</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
