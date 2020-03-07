@@ -8,13 +8,15 @@ import { DashboardComponent } from '../page/dashboard/dashboard.component';
 import { ProjectComponent } from '../page/project/project.component';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SkillComponent } from '../page/skill/skill.component';
 
 @NgModule({
   declarations: [
     DefaultLayoutComponent,
     HeaderComponent,
     DashboardComponent,
-    ProjectComponent
+    ProjectComponent,
+    SkillComponent
   ],
   imports: [
     CommonModule,
