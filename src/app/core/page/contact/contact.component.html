@@ -1,0 +1,41 @@
+<div id="component-bg"></div>
+
+<div id="component-container" class="container-fluid d-flex">
+  <!-- messages overview -->
+  <div class="row m-auto w-100 p-4">
+    <mat-list role="list" class="col-12">
+      <mat-list-item *ngFor="let message of messages" class="message" role="listitem">{{ message.sender }}</mat-list-item>
+    </mat-list>
+  </div>
+  <!-- message details -->
+  <div class="container-fluid" [ngClass]="{'d-none': !showDetails}" [ngClass]="{'one-message': showDetails}">
+    <div class="row">
+      <div class="col-12">
+        <p>Sender: {{ selectedMessage.sender }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <p>Sender: {{ selectedMessage.phone_number }}</p>
+      </div>
+      <div class="col-12 col-md-6">
+        <p>email: {{ selectedMessage.email }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>object: {{ selectedMessage.object }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>object: {{ selectedMessage.date }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p>object: {{ selectedMessage.content }}</p>
+      </div>
+    </div>
+  </div>
+</div>

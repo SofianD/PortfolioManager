@@ -5,6 +5,7 @@ import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { DashboardComponent } from '../page/dashboard/dashboard.component';
 import { ProjectComponent } from '../page/project/project.component';
 import { SkillComponent } from '../page/skill/skill.component';
+import { ContactComponent } from '../page/contact/contact.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'skill',
         component: SkillComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       }
     ]
   }

@@ -9,6 +9,7 @@ import { ProjectComponent } from '../page/project/project.component';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SkillComponent } from '../page/skill/skill.component';
+import { ContactComponent } from '../page/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SkillComponent } from '../page/skill/skill.component';
     HeaderComponent,
     DashboardComponent,
     ProjectComponent,
-    SkillComponent
+    SkillComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
