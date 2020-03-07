@@ -8,6 +8,8 @@ import { ProjectService } from 'src/app/shared/services/project/project.service'
 })
 export class ProjectComponent implements OnInit {
 
+  mode = 'overview';
+
   projects: [] = [];
 
   constructor(
@@ -26,8 +28,12 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  changePageMode(str: string) {
+    this.mode = str;
+  }
+
   /////////////////////////////////////////////////////////////////////
-  ////  BELOW ARE SERVICE FUNCTIONS
+  ////  SERVICE FUNCTIONS
   async getAllProjects() {
     try {
     (await this.projectService.getAllProjects()).subscribe(res => {
