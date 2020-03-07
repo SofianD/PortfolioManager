@@ -1,1 +1,28 @@
-<p>skill works!</p>
+<div id="component-bg"></div>
+
+<div *ngIf="mode === 'overview'" id="project-menu" class="container" style="padding: 0 50px;">
+  <div class="row">
+    <div class="col-12 col-md-10 col-lg-7 col-xl-6 m-auto">
+      <div class="row">
+        <div class="col m-auto text-center py-2">
+          <button mat-raised-button color="primary">Add skill</button>
+        </div>
+        <div class="col m-auto text-center py-2">
+          <button mat-raised-button color="primary">Add framework</button>
+        </div>
+        <div class="col m-auto text-center py-2">
+          <button mat-raised-button color="primary">Add platform</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="component-container" class="container-fluid d-flex">
+  <!-- list of skills -->
+  <div *ngIf="mode === 'overview' && skills.length > 0" class="row m-auto w-100 p-4">
+    <mat-list role="list">
+      <mat-list-item *ngFor="let skill of skills" class="skill" role="listitem">{{ skill.name }}</mat-list-item>
+    </mat-list>
+  </div>
+</div>

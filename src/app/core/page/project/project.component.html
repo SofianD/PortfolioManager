@@ -10,7 +10,7 @@
 
 <div id="all-projects" class="container-fluid d-flex">
   <!-- Overview -->
-  <div *ngIf="mode === 'overview'" class="row m-auto w-100 p-4">
+  <div *ngIf="mode === 'overview' && projects.length > 0" class="row m-auto w-100 p-4">
     <div *ngFor="let project of projects" class="col-12 col-md-6 col-xl-3 m-auto">
       <div class="project-card">
         <p>{{ project.name }}</p>
