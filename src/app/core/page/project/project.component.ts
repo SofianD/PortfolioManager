@@ -9,19 +9,22 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class ProjectComponent implements OnInit {
 
+
+  dateNow = Date.now();
+
   // define the view
   mode = 'overview';
 
   // declare form of type FormGroup
   form: FormGroup;
-  submitted = false;
+  submitted: boolean = false;
 
   projects: [] = [];
 
   constructor(
     private projectService: ProjectService,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.initialize();
@@ -30,6 +33,7 @@ export class ProjectComponent implements OnInit {
   initialize() {
     try {
       this.getAllProjects();
+      this.newForm();
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +72,8 @@ export class ProjectComponent implements OnInit {
       ),
       images: this.fb.array([]),
       skills: this.fb.array([]),
-      framework: this.fb.array([])
+      framework: this.fb.array([]),
+      platform: this.fb.array([])
     });
   }
 
@@ -76,6 +81,27 @@ export class ProjectComponent implements OnInit {
     return this.fb.group(data);   //    an item into a form array
   }
 
+  submitForm() {
+    this.submitted = true;
+    if (this.form.invalid) {
+      console.log('error');
+      console.log(Object.entries(this.form.value));
+      return;
+    }
+    this.createProject(this.form.value);
+  }
+
+  resetForm() {
+    this.submitted = false;
+    this.form.reset();
+  }
+
+
+  /////////////////////////////////////////////////////////////////////
+  ////  IMAGE FUNCTIONS
+  onImagePicked(event: Event) {
+
+  }
 
   /////////////////////////////////////////////////////////////////////
   ////  VIEW FUNCTIONS
@@ -88,9 +114,9 @@ export class ProjectComponent implements OnInit {
   ////  SERVICE FUNCTIONS
   async getAllProjects() {
     try {
-    (await this.projectService.getAllProjects()).subscribe(res => {
-      this.projects = res.projects;
-    });
+      (await this.projectService.getAllProjects()).subscribe(res => {
+        this.projects = res.projects;
+      });
     } catch (error) {
       console.log(error);
     }
@@ -102,6 +128,9 @@ export class ProjectComponent implements OnInit {
 
   async createProject(project: any) {
     const response = await this.projectService.create(project);
+    response.subscribe(res => {
+      console.log(res)
+    });
   }
 
   async updateProject(id: string, project: any) {
