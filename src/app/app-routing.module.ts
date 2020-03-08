@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'logged',
     loadChildren: () => import('./core/default-layout/default.module').then(m => m.DefaultModule),
-    // canLoad: [AuthGuard]
+    canLoad: [AuthGuard]
   }
 ];
 
