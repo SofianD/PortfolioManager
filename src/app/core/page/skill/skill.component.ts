@@ -12,7 +12,7 @@ export class SkillComponent implements OnInit {
   mode: string = 'overview';
 
   //Platform section
-  platform: object[] = [];
+  platforms: object[] = [];
   platformForm: FormGroup;
 
   //Framework section
@@ -72,7 +72,7 @@ export class SkillComponent implements OnInit {
   }
 
   resetSkillForm() {
-    this.skillForm.reset()
+    this.skillForm.reset();
   }
 
   async deleteSkill(id:string) {
@@ -115,7 +115,7 @@ export class SkillComponent implements OnInit {
   }
 
   resetFmForm() {
-    this.frameworkForm.reset()
+    this.frameworkForm.reset();
   }
 
 
@@ -133,7 +133,7 @@ export class SkillComponent implements OnInit {
     });
   }
 
-  submitPlatformForm() {
+  async submitPlatformForm() {
     if (this.platformForm.invalid) {
       console.log('error');
       console.log(this.platformForm.value);
@@ -141,10 +141,14 @@ export class SkillComponent implements OnInit {
     }
     console.log('Ok');
     console.log(this.platformForm.value);
+    (await this.skillService.addPlatform(this.platformForm.value)).subscribe(res => {
+      this.platforms.push(res);
+      this.mode='overview';
+    });
   }
 
   resetPlatformForm() {
-    this.platformForm.reset()
+    this.platformForm.reset();
   }
 
 }
