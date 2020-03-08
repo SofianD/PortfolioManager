@@ -12,15 +12,15 @@ export class SkillComponent implements OnInit {
   mode: string = 'overview';
 
   //Platform section
-  platform: [] =[];
+  platform: object[] = [];
   platformForm: FormGroup;
 
   //Framework section
-  frameworks: [] =[];
+  frameworks: object[] =[];
   frameworkForm: FormGroup;
 
   //Skill section
-  skills: [] =[];
+  skills: object[] =[];
   skillForm: FormGroup;
 
   constructor(
@@ -29,9 +29,17 @@ export class SkillComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.initialize()
+  }
+
+  async initialize() {
     this.newSkillForm();
     this.newFmForm();
     this.newPlatformForm();
+    (await this.skillService.getSkills()).subscribe(res => {
+      console.log(res);
+      this.skills = res;
+    });
   }
 
   changePageMode(string: string) {
@@ -58,8 +66,8 @@ export class SkillComponent implements OnInit {
       return;
     }
     (await this.skillService.addSkill(this.skillForm.value)).subscribe(res =>{
-      // this.skills.push(res.skill);
-      console.log(res);
+      this.skills.push(res);
+      this.mode='overview';
     });
   }
 
