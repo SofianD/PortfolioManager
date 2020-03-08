@@ -25,10 +25,10 @@ export class AuthService {
           data
         })
         .subscribe((res) => {
-          // this.setAuthTimer(res.expiresIn);
-          // const now = new Date();
-          // const expirationDate = new Date( now.getTime() + res.expiresIn * 1000);
-          // this.saveAuthData(res.token, expirationDate);
+          this.setAuthTimer(res.expiresIn);
+          const now = new Date();
+          const expirationDate = new Date( now.getTime() + res.expiresIn * 1000);
+          this.saveAuthData(res.token, expirationDate);
           this.router.navigate(['logged']);
         });
     } catch (error) {
