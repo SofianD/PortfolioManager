@@ -16,7 +16,7 @@ export class SkillService {
   ////   SKILL SECTION
 
   async addSkill(skill): Promise<any> {
-    return this.http.post(BACKEND_URL + 'skill/', {skill});
+    return this.http.post(BACKEND_URL + 'skill/', {skill: skill});
   }
 
   async updateSkill(skill): Promise<any> {

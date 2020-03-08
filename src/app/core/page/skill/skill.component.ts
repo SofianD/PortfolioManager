@@ -52,11 +52,15 @@ export class SkillComponent implements OnInit {
     })
   }
 
-  submitSkillForm() {
+  async submitSkillForm() {
     if (this.skillForm.invalid) {
       console.log('error');
       return;
     }
+    (await this.skillService.addSkill(this.skillForm.value)).subscribe(res =>{
+      // this.skills.push(res.skill);
+      console.log(res);
+    });
   }
 
   resetSkillForm() {
