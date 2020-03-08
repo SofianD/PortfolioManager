@@ -12,15 +12,15 @@ export class SkillComponent implements OnInit {
   mode: string = 'overview';
 
   //Platform section
-  platform: [] =[];
+  platforms: object[] = [];
   platformForm: FormGroup;
 
   //Framework section
-  frameworks: [] =[];
+  frameworks: object[] =[];
   frameworkForm: FormGroup;
 
   //Skill section
-  skills: [] =[];
+  skills: object[] =[];
   skillForm: FormGroup;
 
   constructor(
@@ -29,9 +29,20 @@ export class SkillComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.initialize()
+  }
+
+  async initialize() {
     this.newSkillForm();
     this.newFmForm();
     this.newPlatformForm();
+    (await this.skillService.getSkills()).subscribe(res => {
+      console.log(res);
+      this.skills = res;
+    });
+    (await this.skillService.getAllFm()).subscribe(res => {
+      this.frameworks = res;
+    });
   }
 
   changePageMode(string: string) {
@@ -58,13 +69,19 @@ export class SkillComponent implements OnInit {
       return;
     }
     (await this.skillService.addSkill(this.skillForm.value)).subscribe(res =>{
-      // this.skills.push(res.skill);
-      console.log(res);
+      this.skills.push(res);
+      this.mode='overview';
     });
   }
 
   resetSkillForm() {
-    this.skillForm.reset()
+    this.skillForm.reset();
+  }
+
+  async deleteSkill(id:string) {
+    (await this.skillService.deleteSkill(id)).subscribe(res => {
+      this.skills = this.skills.filter(x => x._id !== id);
+    });
   }
 
   //////////////////////////////////////////////////////////////
@@ -77,19 +94,37 @@ export class SkillComponent implements OnInit {
             Validators.required
           ]
         }
+      ),
+      skill_id: new FormControl(
+        null, {
+          validators: [
+            Validators.required
+          ]
+        }
       )
     })
   }
 
-  submitFmForm() {
+  async submitFmForm() {
     if (this.frameworkForm.invalid) {
       console.log('error');
+      console.log(this.frameworkForm.value);
       return;
     }
+    (await this.skillService.addFm(this.frameworkForm.value)).subscribe(res => {
+      this.frameworks.push(res);
+      this.mode='overview';
+    });
   }
 
   resetFmForm() {
-    this.frameworkForm.reset()
+    this.frameworkForm.reset();
+  }
+
+  async deleteFramework(id: string) {
+    (await this.skillService.deleteFm(id)).subscribe(res => {
+      this.frameworks = this.frameworks.filter(x => x._id !== id);
+    });
   }
 
 
@@ -104,18 +139,25 @@ export class SkillComponent implements OnInit {
           ]
         }
       )
-    })
+    });
   }
 
-  submitPlatformForm() {
+  async submitPlatformForm() {
     if (this.platformForm.invalid) {
       console.log('error');
+      console.log(this.platformForm.value);
       return;
     }
+    console.log('Ok');
+    console.log(this.platformForm.value);
+    (await this.skillService.addPlatform(this.platformForm.value)).subscribe(res => {
+      this.platforms.push(res);
+      this.mode='overview';
+    });
   }
 
   resetPlatformForm() {
-    this.platformForm.reset()
+    this.platformForm.reset();
   }
 
 }
