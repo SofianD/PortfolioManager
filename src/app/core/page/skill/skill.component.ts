@@ -75,6 +75,12 @@ export class SkillComponent implements OnInit {
     this.skillForm.reset()
   }
 
+  async deleteSkill(id:string) {
+    (await this.skillService.deleteSkill(id)).subscribe(res => {
+      this.skills = this.skills.filter(x => x._id !== id);
+    });
+  }
+
   //////////////////////////////////////////////////////////////
   ////   FRAMEWORK SECTION
   newFmForm() {
@@ -85,15 +91,27 @@ export class SkillComponent implements OnInit {
             Validators.required
           ]
         }
+      ),
+      skill_id: new FormControl(
+        null, {
+          validators: [
+            Validators.required
+          ]
+        }
       )
     })
   }
 
-  submitFmForm() {
+  async submitFmForm() {
     if (this.frameworkForm.invalid) {
       console.log('error');
+      console.log(this.frameworkForm.value);
       return;
     }
+    (await this.skillService.addFm(this.frameworkForm.value)).subscribe(res => {
+      this.frameworks.push(res);
+      this.mode='overview';
+    });
   }
 
   resetFmForm() {
@@ -112,14 +130,17 @@ export class SkillComponent implements OnInit {
           ]
         }
       )
-    })
+    });
   }
 
   submitPlatformForm() {
     if (this.platformForm.invalid) {
       console.log('error');
+      console.log(this.platformForm.value);
       return;
     }
+    console.log('Ok');
+    console.log(this.platformForm.value);
   }
 
   resetPlatformForm() {
