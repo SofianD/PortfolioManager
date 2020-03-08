@@ -40,6 +40,9 @@ export class SkillComponent implements OnInit {
       console.log(res);
       this.skills = res;
     });
+    (await this.skillService.getAllFm()).subscribe(res => {
+      this.frameworks = res;
+    });
   }
 
   changePageMode(string: string) {
@@ -116,6 +119,12 @@ export class SkillComponent implements OnInit {
 
   resetFmForm() {
     this.frameworkForm.reset();
+  }
+
+  async deleteFramework(id: string) {
+    (await this.skillService.deleteFm(id)).subscribe(res => {
+      this.frameworks = this.frameworks.filter(x => x._id !== id);
+    });
   }
 
 
