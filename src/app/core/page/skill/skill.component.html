@@ -1,6 +1,6 @@
 <div id="component-bg"></div>
 
-<div id="project-menu" class="container" style="padding: 0 50px;">
+<div id="skill-menu" class="container-fluid" style="padding: 0 50px;">
   <div class="row">
     <div class="col-12 col-md-10 col-lg-7 col-xl-6 m-auto">
       <div class="row">
@@ -20,8 +20,8 @@
 
 <div id="component-container" class="container-fluid d-flex mt-4">
   <div *ngIf="mode === 'overview'" class="w-100">
+    <!-- list of skills -->
     <div *ngIf="skills.length > 0" class="col-12 col-md-6 mx-auto">
-      <!-- list of skills -->
       <div class="row m-auto w-100">
         <div class="col-12 text-center">
           <h3 style="color: blanchedalmond;">Programming language</h3>
@@ -30,6 +30,20 @@
           <mat-list-item *ngFor="let skill of skills" class="skill rounded m-1 " role="listitem">
             {{skill.name}}
             <i class="gg-trash" (click)="deleteSkill(skill._id)"></i>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+    <!-- list of framworks -->
+    <div *ngIf="frameworks.length > 0" class="col-12 col-md-6 mx-auto mt-4">
+      <div class="row m-auto w-100">
+        <div class="col-12 text-center">
+          <h3 style="color: blanchedalmond;">Frameworks</h3>
+        </div>
+        <mat-list role="list" class="col-12 mx-auto">
+          <mat-list-item *ngFor="let framework of frameworks" class="skill rounded m-1 " role="listitem">
+            {{framework.name}}
+            <i class="gg-trash" (click)="deleteFramework(framework._id)"></i>
           </mat-list-item>
         </mat-list>
       </div>

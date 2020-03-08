@@ -13,6 +13,7 @@
 #skill-menu {
   min-height: 20px;
   box-sizing: border-box;
+  background: linear-gradient(rgba(255, 255, 255, 0.274), rgba(227, 205, 255, 0));
 }
 
 #component-container {
