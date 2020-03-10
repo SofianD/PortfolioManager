@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const expirationDate = localStorage.getItem('expiration');
 
     if (!token || !expirationDate) {
-      return this.router.navigate(['/auth']);
+      return this.router.navigate(['']);
     }
     return true;
   }
@@ -36,7 +36,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const expirationDate = localStorage.getItem('expiration');
 
     if (!token || !expirationDate) {
-      return this.router.navigate(['/auth']);
+      return this.router.navigate(['']);
     }
     return true;
   }
@@ -47,7 +47,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const expirationDate = localStorage.getItem('expiration');
 
     if (!token || !expirationDate) {
-      return this.router.navigate(['/auth']);
+      return this.router.navigate(['']);
     }
     return true;
   }
