@@ -37,11 +37,13 @@ export class SkillComponent implements OnInit {
     this.newFmForm();
     this.newPlatformForm();
     (await this.skillService.getSkills()).subscribe(res => {
-      console.log(res);
       this.skills = res;
     });
     (await this.skillService.getAllFm()).subscribe(res => {
       this.frameworks = res;
+    });
+    (await this.skillService.getPlatforms()).subscribe(res => {
+      this.platforms = res;
     });
   }
 
@@ -148,8 +150,6 @@ export class SkillComponent implements OnInit {
       console.log(this.platformForm.value);
       return;
     }
-    console.log('Ok');
-    console.log(this.platformForm.value);
     (await this.skillService.addPlatform(this.platformForm.value)).subscribe(res => {
       this.platforms.push(res);
       this.mode='overview';
@@ -158,6 +158,12 @@ export class SkillComponent implements OnInit {
 
   resetPlatformForm() {
     this.platformForm.reset();
+    this.mode = 'overview';
   }
 
+  async deletePlatform(id:string) {
+    (await this.skillService.deletePlatform(id)).subscribe(res => {
+      this.platforms = this.platforms.filter(x => x._id !== id);
+    });
+  }
 }

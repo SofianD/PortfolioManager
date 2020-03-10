@@ -24,7 +24,7 @@
     <div *ngIf="skills.length > 0" class="col-12 col-md-6 mx-auto">
       <div class="row m-auto w-100">
         <div class="col-12 text-center">
-          <h3 style="color: blanchedalmond;">Programming language</h3>
+          <h3 style="color: white;">Programming language</h3>
         </div>
         <mat-list role="list" class="col-12 mx-auto">
           <mat-list-item *ngFor="let skill of skills" class="skill rounded m-1 " role="listitem">
@@ -38,7 +38,7 @@
     <div *ngIf="frameworks.length > 0" class="col-12 col-md-6 mx-auto mt-4">
       <div class="row m-auto w-100">
         <div class="col-12 text-center">
-          <h3 style="color: blanchedalmond;">Frameworks</h3>
+          <h3 style="color: white;">Frameworks</h3>
         </div>
         <mat-list role="list" class="col-12 mx-auto">
           <mat-list-item *ngFor="let framework of frameworks" class="skill rounded m-1 " role="listitem">
@@ -48,6 +48,21 @@
         </mat-list>
       </div>
     </div>
+    <!-- list of platforms -->
+    <div *ngIf="platforms.length > 0" class="col-12 col-md-6 mx-auto mt-4">
+      <div class="row m-auto w-100">
+        <div class="col-12 text-center">
+          <h3 style="color: white">Paltforms</h3>
+        </div>
+        <mat-list role="list" class="col-12 mx-auto">
+          <mat-list-item *ngFor="let platform of platforms" class="skill rounded m-1 " role="listitem">
+            {{platform.name}}
+            <i class="gg-trash" (click)="deletePlatform(platform._id)"></i>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+
   </div>
 
 

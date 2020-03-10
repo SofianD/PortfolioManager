@@ -38,6 +38,18 @@ export class AuthService {
 
   logout() {
     this.clearAuthData();
+    this.router.navigate(['']);
+  }
+
+  autoAuthUser() {
+    const authInformation = this.getAuthData();
+    if (!authInformation) return;
+    const now = new Date();
+    const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+    if (expiresIn <= 0) {
+      this.logout();
+    }
+    this.setAuthTimer(expiresIn / 1000);
   }
 
   private setAuthTimer(duration: number) {
@@ -55,5 +67,16 @@ export class AuthService {
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
+  }
+  private getAuthData() {
+    const token = localStorage.getItem('token');
+    const expirationDate = localStorage.getItem('expiration');
+
+    if (!token || !expirationDate) return false;
+
+    return {
+      token,
+      expirationDate: new Date(expirationDate)
+    }
   }
 }
