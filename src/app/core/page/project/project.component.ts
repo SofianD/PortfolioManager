@@ -21,7 +21,8 @@ export class ProjectComponent implements OnInit {
 
   //image preview
   imagePicked: string = '';
-  previewIsVisible: boolean = false;
+  imageName: string = '';
+  imageDescription: string = '';
 
   constructor(
     private projectService: ProjectService,
@@ -86,7 +87,7 @@ export class ProjectComponent implements OnInit {
   submitForm() {
     this.submitted = true;
     if (this.form.invalid) {
-      console.log(Object.entries(this.form.value));
+      console.log(this.form.value);
       return;
     }
     this.createProject(this.form.value);
@@ -94,6 +95,7 @@ export class ProjectComponent implements OnInit {
 
   resetForm() {
     this.submitted = false;
+    this.imagePicked = '';
     this.form.reset();
   }
 
@@ -102,8 +104,7 @@ export class ProjectComponent implements OnInit {
   ////  IMAGE FUNCTIONS
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
-    !this.checkFileType(file.name.split('.')[file.name.split('.').length - 1])
-    ?
+    !this.checkFileType(file.name.split('.')[file.name.split('.').length - 1]) ?
     console.log('Wrong') :
     this.setupImgPreview(file);
   }
@@ -112,24 +113,36 @@ export class ProjectComponent implements OnInit {
     const validTypes = ['jpg', 'jpeg', 'png'];
     return validTypes.includes(type.toLowerCase()) ? true : false;
   }
-
-  addImageInForm(image: string, title: string, description: string) {
-    this.formImages.push(this.createItem({
-      image,
-      title,
-      description
-    }));
-  }
-
+  
   setupImgPreview(file: File) {
     const reader = new FileReader();
     reader.onload = (e) => {
       this.imagePicked = reader.result.toString();
     };
     reader.readAsDataURL(file);
-    this.previewIsVisible = true;
+  }
+  
+  addImageInForm() {
+    const image = this.imagePicked;
+    const title = this.imageName;
+    const description = this.imageDescription;
+    if(image.length > 0 && title.length > 0 && description.length > 0) {
+      console.log(image, ' ... ', title)
+      this.formImages.push(this.createItem({
+        image,
+        title,
+        description
+      }));
+      console.log(this.formImages.value);
+      this.resetNewImgForm();
+    }
   }
 
+  resetNewImgForm() {
+    this.imagePicked = '';
+    this.imageName = '';
+    this.imageDescription = '';
+  }
 
   /////////////////////////////////////////////////////////////////////
   ////  VIEW FUNCTIONS
