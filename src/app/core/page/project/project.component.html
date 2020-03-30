@@ -22,10 +22,12 @@
 
   <!-- Project editing -->
   <div *ngIf="mode === 'editing'" class="row m-auto w-100 p-4">
-    <div class="col-12 col-md-9 col-xl-7 m-auto" style="min-height: 60px; background-color: rgba(255, 255, 255, 0.863); border-radius: 3px; transition: 0.5s;">
-      <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="submitForm()" class="w-100">
-        <div class="col-12 text-center">
-          <p>Create Project</p>
+    <div  class="col-12 col-md-11 col-xl-8 m-auto"
+          style="min-height: 60px; background-color: rgba(255, 255, 255, 0.952); border-radius: 3px; transition: 0.5s; box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);"
+    >
+      <form [formGroup]="form" enctype="multipart/form-data" class="w-100">
+        <div class="col-12 text-center mt-2">
+          <h3>Create Project</h3>
         </div>
         <!-- name -->
         <div class="form-row">
@@ -51,15 +53,47 @@
           </mat-form-field>
         </div>
         <!-- pick image -->
-        <div class="form-row" style="margin: 0 5px;">
-          <button class="bg-white" mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+        <div *ngIf="imagePicked.length === 0" class="form-row" style="margin: 0 5px;">
+          <button color="primary" mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
           <input type="file" #filePicker multiple (change)="onImagePicked($event)" hidden>
         </div>
-
+        <div *ngIf="imagePicked.length > 0" class="my-2" id="images-form" style="margin: 0 5px;">
+          <div class="container">
+            <div class="row w-100">
+              <div class="col-12 col-md-6 p-1">
+                <img [src]="imagePicked" class="w-100">
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="row mt-1">
+                  <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Image name*</mat-label>
+                    <input matInput placeholder="Image name" [(ngModel)]="imageName" [ngModelOptions]="{standalone: true}">
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Image description*</mat-label>
+                    <input matInput placeholder="Image description" [(ngModel)]="imageDescription" [ngModelOptions]="{standalone: true}">
+                  </mat-form-field>
+                </div>
+                <div class="col-12 text-center">
+                  <button class="m-1" mat-raised-button color="primary" (click)="addImageInForm()">Add image</button>
+                  <button mat-button color="primary" class="m-1" (click)="resetNewImgForm()">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Images overview -->
+        <div *ngIf="formImages.value.length > 0" class="form-row my-2">
+          <div *ngFor="let image of formImages.value" class="col-4">
+            <img class="w-100 formImage" [src]="image.image" alt="image.title">
+          </div>
+        </div>
         <!-- BUTTONS -->
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-success m-1">Register</button>
-          <button class="btn btn-secondary m-1" type="reset" (click)="resetForm()" (click)="changePageMode('overview')">Cancel</button>
+        <div class="col-12 text-center mb-2">
+          <button type="submit" class="m-1" mat-raised-button color="primary" (click)="submitForm()">Register</button>
+          <button mat-button color="primary" class="btn btn-secondary m-1" type="reset" (click)="resetForm()" (click)="changePageMode('overview')">Cancel</button>
         </div>
       </form>
     </div>
