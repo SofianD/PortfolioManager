@@ -11,7 +11,7 @@ export class ProjectComponent implements OnInit {
 
 
   dateNow = Date.now();
-  projects: [] = [];
+  projects: any[] = [];
 
   // define the view
   mode = 'overview';
@@ -90,7 +90,7 @@ export class ProjectComponent implements OnInit {
       console.log(this.form.value);
       return;
     }
-    this.createProject(this.form.value);
+    this.createProject({...this.form.value});
   }
 
   resetForm() {
@@ -127,14 +127,14 @@ export class ProjectComponent implements OnInit {
     const title = this.imageName;
     const description = this.imageDescription;
     if(image.length > 0 && title.length > 0 && description.length > 0) {
-      console.log(image, ' ... ', title)
       this.formImages.push(this.createItem({
+        id: this.formImages.length + 1,
         image,
         title,
         description
       }));
-      console.log(this.formImages.value);
       this.resetNewImgForm();
+      console.log(this.formImages.value);
     }
   }
 
@@ -170,7 +170,9 @@ export class ProjectComponent implements OnInit {
   async createProject(project: any) {
     const response = await this.projectService.create(project);
     response.subscribe(res => {
-      console.log(res)
+      this.projects.push(res);
+      this.resetForm();
+      this.mode = 'overview';
     });
   }
 
