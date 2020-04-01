@@ -16,6 +16,7 @@
         <p>{{ project.name }}</p>
         <p>{{ project.created_date }}</p>
         <p>{{ project.description }}</p>
+        <p (click)="deleteProject(project._id)">DELETE</p>
       </div>
     </div>
   </div>
