@@ -85,52 +85,63 @@
           </div>
         </div>
         <!-- Images overview -->
-        <div *ngIf="formImages.value.length > 0" class="form-row my-2">
+        <div *ngIf="formImages.value.length > 0" class="form-row my-4">
           <div *ngFor="let image of formImages.value" class="col-4">
             <img class="w-100 formImage" [src]="image.image" alt="image.title">
+            <div class="d-flex deleteImgContainer">
+              <div class="m-auto">
+                <p style="cursor: pointer;" (click)="removeImg(image)">DELETE</p>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Skills list -->
-        <div *ngIf="skills.length > 0" class="form-row my-2">
-          <h6>Skills</h6>
-          <div class="col-12">
-            <mat-checkbox
-              *ngFor="let skill of skills"
-              color="primary"
-              [(ngModel)]="skill.checked"
-              [ngModelOptions]="{standalone: true}"
-              class="mx-4"
-            >
-              {{skill.name}}
-            </mat-checkbox>
-          </div>
-        </div>
-        <div *ngIf="frameworks.length > 0" class="form-row my-2">
-          <h6>Frameworks</h6>
-          <div class="col-12">
-            <mat-checkbox
-              *ngFor="let fm of frameworks"
-              color="primary"
-              [(ngModel)]="fm.checked"
-              [ngModelOptions]="{standalone: true}"
-              class="mx-4"
-            >
-              {{fm.name}}
-            </mat-checkbox>
-          </div>
-        </div>
-        <div *ngIf="platforms.length > 0" class="form-row my-2">
-          <h6>Platforms</h6>
-          <div class="col-12">
-            <mat-checkbox
-              *ngFor="let platform of platforms"
-              color="primary"
-              [(ngModel)]="platform.checked"
-              [ngModelOptions]="{standalone: true}"
-              class="mx-4"
-            >
-              {{platform.name}}
-            </mat-checkbox>
+        <div class="form-row my-4">
+          <div class="container-fluid" id="skills-container" style="margin: 0 10px;">
+            <!-- Skills list -->
+            <div *ngIf="skills.length > 0" class="form-row my-2">
+              <h6>Skills:</h6>
+              <div class="col-12">
+                <mat-checkbox
+                  *ngFor="let skill of skills"
+                  color="primary"
+                  [(ngModel)]="skill.checked"
+                  [ngModelOptions]="{standalone: true}"
+                  class="mx-3"
+                >
+                  {{skill.name}}
+                </mat-checkbox>
+              </div>
+            </div>
+            <hr>
+            <div *ngIf="frameworks.length > 0" class="form-row my-2">
+              <h6>Frameworks:</h6>
+              <div class="col-12">
+                <mat-checkbox
+                  *ngFor="let fm of frameworks"
+                  color="primary"
+                  [(ngModel)]="fm.checked"
+                  [ngModelOptions]="{standalone: true}"
+                  class="mx-3"
+                >
+                  {{fm.name}}
+                </mat-checkbox>
+              </div>
+            </div>
+            <hr>
+            <div *ngIf="platforms.length > 0" class="form-row my-2">
+              <h6>Platforms:</h6>
+              <div class="col-12">
+                <mat-checkbox
+                  *ngFor="let platform of platforms"
+                  color="primary"
+                  [(ngModel)]="platform.checked"
+                  [ngModelOptions]="{standalone: true}"
+                  class="mx-3"
+                >
+                  {{platform.name}}
+                </mat-checkbox>
+              </div>
+            </div>
           </div>
         </div>
         <!-- BUTTONS -->
