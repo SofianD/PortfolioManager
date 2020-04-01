@@ -98,18 +98,20 @@ export class ProjectComponent implements OnInit {
 
   submitForm() {
     this.submitted = true;
+    this.addSkills();
     if (this.form.invalid) {
       console.log(this.form.value);
       return;
     }
     this.addSkills();
-    console.log({...this.form.value});
     this.createProject({...this.form.value});
   }
 
   resetForm() {
     this.submitted = false;
     this.imagePicked = '';
+    this.resetSkillsForms();
+    this.resetSkillsArrays();
     this.form.reset();
   }
 
@@ -152,6 +154,10 @@ export class ProjectComponent implements OnInit {
     }
   }
 
+  removeImg(image) {
+    this.formImages.removeAt(this.formImages.value.indexOf(image));
+  }
+
   resetNewImgForm() {
     this.imagePicked = '';
     this.imageName = '';
@@ -168,16 +174,7 @@ export class ProjectComponent implements OnInit {
   /////////////////////////////////////////////////////////////////////
   ////  SKILLS FUNCTIONS
   addSkills() {
-    while(this.formSkills.length > 0) {
-      this.formSkills.removeAt(0);
-    }
-    while(this.formFrameworks.length > 0) {
-      this.formFrameworks.removeAt(0);
-    }
-    while(this.formPlatforms.length > 0) {
-      this.formPlatforms.removeAt(0);
-    }
-
+    this.resetSkillsForms();
     const addedSkill = this.skills.filter(x => x.checked === true);
     const addedFW = this.frameworks.filter(x => x.checked === true);
     const addedPlatform = this.platforms.filter(x => x.checked === true);
@@ -189,6 +186,23 @@ export class ProjectComponent implements OnInit {
     if (addedPlatform.length > 0) addedPlatform.map(x => this.formPlatforms.push(this.createItem({id: x._id})));
   }
 
+  resetSkillsForms() {
+    while(this.formSkills.length > 0) {
+      this.formSkills.removeAt(0);
+    }
+    while(this.formFrameworks.length > 0) {
+      this.formFrameworks.removeAt(0);
+    }
+    while(this.formPlatforms.length > 0) {
+      this.formPlatforms.removeAt(0);
+    }
+  }
+
+  resetSkillsArrays() {
+      this.skills = this.skills.map(skill => {return {...skill, checked: false}});
+      this.frameworks = this.frameworks.map(fm => {return {...fm, checked: false}});
+      this.platforms = this.platforms.map(platform => {return  {...platform, checked: false}});
+  }
 
   /////////////////////////////////////////////////////////////////////
   ////  SERVICE FUNCTIONS
@@ -209,9 +223,12 @@ export class ProjectComponent implements OnInit {
   async createProject(project: any) {
     const response = await this.projectService.create(project);
     response.subscribe(res => {
-      this.projects.push(res);
-      this.resetForm();
       this.mode = 'overview';
+      this.submitted = false;
+      this.projects.push(res);
+      this.resetSkillsForms();
+      this.resetSkillsArrays();
+      this.resetForm();
     });
   }
 
