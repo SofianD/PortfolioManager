@@ -38,10 +38,12 @@
 
 /* FORM */
 
-#images-form{
-  border: 1px solid rgb(51, 15, 85);
+#images-form,
+#skills-container {
+  border: 1px solid rgba(51, 15, 85, 0.267);
   border-radius: 3px;
   background-color: rgba(51, 15, 85, 0.055);
+  box-shadow: inset 0 0 10px rgba(29, 7, 49, 0.308);
 }
 
 .formImage{
@@ -51,6 +53,19 @@
   transition: 0.5s;
 }
 
-.formImage:hover{
-  box-shadow: 0 3px 5px rgba(36, 8, 53, 0.425);
+.deleteImgContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0);
+  color: rgba(0, 0, 0, 0);
+  transition: 0.4s;
+}
+
+.deleteImgContainer:hover {
+  background-color: rgba(255, 255, 255, 0.39);
+  color: brown;
+  font-weight: bolder;
 }
