@@ -233,11 +233,19 @@ export class ProjectComponent implements OnInit {
   }
 
   async updateProject(id: string, project: any) {
-    const response = await this.projectService.update(id, project);
+    (await this.projectService.update(id, project)).subscribe(res => {
+      console.log(res)
+    });
   }
 
-  async delete(id: string) {
-    const response = await this.projectService.delete(id);
+  async deleteProject(id: string) {
+    (await this.projectService.delete(id)).subscribe(res => {
+      for(let i = 0; i < this.projects.length; i++) {
+        if(id === this.projects[i]._id) {
+          this.projects.splice(i, 1);
+        }
+      }
+    });
   }
 
   //// skills
