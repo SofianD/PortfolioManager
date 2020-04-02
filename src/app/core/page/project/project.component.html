@@ -15,7 +15,7 @@
       <div class="project-card">
         <p>{{ project.name }}</p>
         <p>{{ project.created_date }}</p>
-        <p>{{ project.description }}</p>
+        <p [innerHTML]="project.description"></p>
         <p (click)="deleteProject(project._id)">DELETE</p>
       </div>
     </div>
@@ -47,15 +47,17 @@
           </mat-form-field>
         </div>
         <!-- description -->
-        <div class="form-row">
-          <mat-form-field appearance="fill" style="width: 100%; margin: 0 5px;">
-            <mat-label>Description</mat-label>
-            <textarea formControlName="description" matInput style="min-height: 100px;"></textarea>
-          </mat-form-field>
+        <div class="form-row txt-area p-2">
+          <div class="col-12 text-center"><h6>Description</h6></div>
+          <angular-editor
+            class="col-12"
+            formControlName="description"
+            [config]="config"
+          ></angular-editor>
         </div>
         <!-- pick image -->
         <div *ngIf="imagePicked.length === 0" class="form-row" style="margin: 0 5px;">
-          <button color="primary" mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+          <button class="col-12" color="primary" mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
           <input type="file" #filePicker multiple (change)="onImagePicked($event)" hidden>
         </div>
         <div *ngIf="imagePicked.length > 0" class="my-2" id="images-form" style="margin: 0 5px;">
