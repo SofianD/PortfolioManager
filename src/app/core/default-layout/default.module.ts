@@ -10,6 +10,7 @@ import { AngularMaterialModule } from 'src/app/shared/modules/angular-material/a
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SkillComponent } from '../page/skill/skill.component';
 import { ContactComponent } from '../page/contact/contact.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ContactComponent } from '../page/contact/contact.component';
     DefaultRoutingModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularEditorModule
   ]
 })
 export class DefaultModule { }
