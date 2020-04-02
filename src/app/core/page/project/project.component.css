@@ -69,3 +69,10 @@
   color: brown;
   font-weight: bolder;
 }
+
+.txt-area {
+  margin: 20px 5px;
+  border: 1px solid rgba(36, 22, 54, 0.349);
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px rgba(33, 8, 49, 0.199);
+}
