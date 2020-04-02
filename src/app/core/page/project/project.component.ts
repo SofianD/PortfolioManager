@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/shared/services/project/project.service';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { SkillService } from 'src/app/shared/services/skill/skill.service';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-project',
@@ -27,6 +28,43 @@ export class ProjectComponent implements OnInit {
   imagePicked: string = '';
   imageName: string = '';
   imageDescription: string = '';
+
+  // angular-editor config
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Project description...*',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    showToolbar: true,
+    toolbarHiddenButtons: [
+      [
+        'indent',
+        'outdent',
+        'heading',
+        'justifyLeft',
+        'justifyCenter',
+        'justifyRight',
+        'justifyFull',
+        'fontName'
+      ],
+      [
+        'fontSize',
+        'textColor',
+        'backgroundColor',
+        'customClasses',
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+        'insertHorizontalRule',
+        'removeFormat',
+        'toggleEditorMode'
+      ]
+    ]
+  }
 
   constructor(
     private projectService: ProjectService,
